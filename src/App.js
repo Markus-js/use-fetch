@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react';
+import { useFetch } from './helpers/helper';
 
 function App() {
+  const [data, setData] = useState([]);
+
+    // Fetch API
+    const getData = async () => {
+      const url = URL;
+      // Custom fetch hook
+      const result = await useFetch(url, 'GET');
+      // Set state to result
+      setData(result?.item);
+    };
+    // Lifecycle management
+    useEffect(() => {
+      getData();
+    }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <p>{data}</p>
   );
 }
 
